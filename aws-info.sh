@@ -32,7 +32,6 @@ function findbyinstancename {
   rm $resultfile
 }
 
-
 function findbyinstanceid {
   instanceid=$1
   resultfile=result_file.txt
@@ -68,14 +67,18 @@ if [ $OPTIND -lt 1 ]; then
   echo "No options were passed.
   Help - available options:
     -i <public IP> find by public ip
+    -d <instance id> find by instance id
     -n <instance name> find by instance name
     -p list configured aws profiles
-  -a <profile name> find account id for configured aws profile"
+    -a <profile name> find account id for configured aws profile"
   exit 0;
 fi
 
 while getopts ":i:d:n:pa:" opt; do
   case $opt in
+    d)
+      selectedfunction="findbyinstanceid $OPTARG"
+    ;;
     i)
       selectedfunction="findbypublicip $OPTARG"
     ;;
@@ -97,6 +100,7 @@ while getopts ":i:d:n:pa:" opt; do
     *)
       echo "Help - available options:
     -i <public IP> find by public ip
+    -d <instance id> find by instance id
     -n <instance name> find by instance name
     -p list configured aws profiles
     -a <profile name> find account id for configured aws profile"
