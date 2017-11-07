@@ -12,6 +12,7 @@
 # usage
 * Available options:
   * -i <public IP> find by public ip
+  * -d <instance id> find by instance id
   * -n <instance name> find by instance name
   * -p list configured aws profiles
   * -a <profile name> find account id for configured aws profile
